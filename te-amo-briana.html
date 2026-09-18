@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te Amo Briana — 100 Poems</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2226%22>💗</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#07020f;
+    --deep:#0e0620;
+    --panel:#120a24;
+    --pink:#ff4fc3;
+    --pink-soft:#ff8fd6;
+    --magenta:#c81f8d;
+    --violet:#8b5cf6;
+    --gold:#f5d0a9;
+    --text:#f4e9f7;
+    --text-dim:#c6a9d8;
+    --line: rgba(255,143,214,.35);
+    --glow: 0 0 12px rgba(255,79,195,.55), 0 0 28px rgba(139,92,246,.25);
+  }
+  :root[data-theme="light"]{
+    --void:#07020f; --deep:#0e0620; --panel:#120a24; --text:#f4e9f7; --text-dim:#c6a9d8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--void);
+    color:var(--text);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* ---------- Starfield & nebula ---------- */
+  .sky{
+    position:fixed; inset:0; z-index:-3; background:var(--void);
+    overflow:hidden;
+  }
+  .sky::before, .sky::after{
+    content:""; position:absolute; inset:-10%;
+    background-image:
+      radial-gradient(2px 2px at 10% 20%, #fff, transparent 60%),
+      radial-gradient(1.5px 1.5px at 80% 10%, #fff, transparent 60%),
+      radial-gradient(1.5px 1.5px at 60% 70%, #fff, transparent 60%),
+      radial-gradient(2px 2px at 30% 80%, #fff, transparent 60%),
+      radial-gradient(1px 1px at 45% 40%, #fff, transparent 60%),
+      radial-gradient(1.5px 1.5px at 90% 60%, #fff, transparent 60%),
+      radial-gradient(1px 1px at 15% 55%, #fff, transparent 60%),
+      radial-gradient(1.5px 1.5px at 70% 30%, #fff, transparent 60%),
+      radial-gradient(1px 1px at 25% 90%, #fff, transparent 60%),
+      radial-gradient(1.5px 1.5px at 95% 85%, #fff, transparent 60%);
+    background-repeat:repeat;
+    background-size:340px 340px;
+    opacity:.65;
+    animation:twinkle 6s ease-in-out infinite alternate;
+  }
+  .sky::after{
+    background-size:520px 520px;
+    background-position:70px 120px;
+    opacity:.35;
+    animation-duration:9s;
+  }
+  @keyframes twinkle{ from{opacity:.35;} to{opacity:.85;} }
+
+  .nebula{
+    position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(45% 35% at 12% 8%, rgba(255,79,195,.25), transparent 70%),
+      radial-gradient(40% 30% at 90% 6%, rgba(139,92,246,.22), transparent 70%),
+      radial-gradient(50% 40% at 50% 100%, rgba(200,31,141,.20), transparent 70%),
+      radial-gradient(30% 25% at 85% 80%, rgba(139,92,246,.18), transparent 70%);
+  }
+
+  .heart-drift{
+    position:fixed; z-index:-1; pointer-events:none;
+    font-size:22px; color:var(--pink-soft); opacity:.18;
+    filter:drop-shadow(0 0 6px rgba(255,79,195,.6));
+    animation:drift 14s ease-in-out infinite;
+  }
+  @keyframes drift{
+    0%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-24px) rotate(6deg); }
+    100%{ transform:translateY(0) rotate(0deg); }
+  }
+
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; padding:18px 34px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(18,10,36,.85), rgba(18,10,36,.35));
+    backdrop-filter:blur(6px);
+    position:sticky; top:0; z-index:50;
+    flex-wrap:wrap;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Dancing Script', cursive;
+    font-size:1.6rem; color:var(--pink-soft);
+    text-shadow:0 0 14px rgba(255,79,195,.5);
+    white-space:nowrap;
+  }
+  .brand .pulse{ animation:pulse 2.2s ease-in-out infinite; display:inline-block;}
+  @keyframes pulse{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.18);} }
+
+  nav.mainnav{ display:flex; gap:26px; font-family:'Poppins',sans-serif; font-size:.92rem; font-weight:400; color:var(--text-dim); flex-wrap:wrap;}
+  nav.mainnav a{ display:flex; align-items:center; gap:7px; padding:6px 4px; border-bottom:2px solid transparent; transition:color .2s, border-color .2s;}
+  nav.mainnav a:hover, nav.mainnav a:focus-visible{ color:var(--pink-soft); }
+  nav.mainnav a.active{ color:var(--pink-soft); border-color:var(--pink); }
+
+  .search-wrap{ display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:999px; padding:8px 16px; min-width:190px;}
+  .search-wrap input{ background:transparent; border:none; outline:none; color:var(--text); font-family:'Poppins',sans-serif; font-size:.85rem; width:100%;}
+  .search-wrap input::placeholder{ color:var(--text-dim); }
+  .search-wrap svg{ flex-shrink:0; opacity:.7; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; text-align:center; padding:76px 24px 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .quote{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.15rem;
+    color:var(--pink-soft); max-width:260px; margin:0 auto 18px;
+    text-shadow:0 0 10px rgba(255,79,195,.4);
+  }
+  .hero .side-quote{ position:absolute; top:70px; max-width:220px; font-style:italic; color:var(--text-dim); font-size:1.05rem; line-height:1.5;}
+  .hero .side-quote.left{ left:4%; }
+  .hero .side-quote.right{ right:4%; }
+  .hero h1{
+    font-family:'Poppins',sans-serif; font-weight:300; letter-spacing:.06em;
+    font-size:2.1rem; color:var(--text); margin:0 0 4px;
+  }
+  .hero .brand-title{
+    font-family:'Dancing Script', cursive; font-weight:700;
+    font-size:5rem; line-height:1; margin:6px 0 18px;
+    background:linear-gradient(180deg, #ffe1f5, var(--pink) 55%, var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 0 22px rgba(255,79,195,.45));
+  }
+  .hero .rule{ width:120px; height:1px; margin:0 auto 18px; background:linear-gradient(90deg, transparent, var(--pink), transparent); position:relative;}
+  .hero .rule::after{ content:"♡"; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); color:var(--pink); background:var(--void); padding:0 8px; font-size:.9rem;}
+  .hero .tagline{ color:var(--text-dim); font-size:1.15rem; max-width:420px; margin:0 auto; line-height:1.6;}
+
+  @media (max-width:900px){
+    .hero .side-quote{ display:none; }
+    .hero .brand-title{ font-size:3.4rem; }
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:220px 1fr 400px;
+    gap:0;
+    max-width:1400px; margin:0 auto;
+    min-height:70vh;
+  }
+  aside.side{
+    border-right:1px solid var(--line);
+    padding:34px 22px;
+    display:flex; flex-direction:column; gap:26px;
+  }
+  aside.side nav{ display:flex; flex-direction:column; gap:4px; font-family:'Poppins',sans-serif; font-size:.95rem;}
+  aside.side nav a{
+    display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:10px;
+    color:var(--text-dim); transition:background .2s, color .2s;
+  }
+  aside.side nav a svg{ opacity:.85; flex-shrink:0; }
+  aside.side nav a:hover{ background:rgba(255,79,195,.08); color:var(--text); }
+  aside.side nav a.active{
+    background:linear-gradient(90deg, rgba(255,79,195,.18), rgba(139,92,246,.10));
+    color:var(--pink-soft); border:1px solid var(--line);
+  }
+  .side-divider{ width:100%; height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); position:relative;}
+  .side-divider::after{ content:"♡"; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:var(--void); color:var(--pink); padding:0 6px; font-size:.75rem;}
+  .side-note{
+    font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-dim);
+    font-size:1.05rem; line-height:1.65; text-align:center; padding:0 4px;
+    background:none; border:0; cursor:pointer;
+  }
+  .side-signoff{ margin-top:auto; text-align:center; font-family:'Dancing Script',cursive; font-size:1.3rem; color:var(--pink-soft);}
+  .modal{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:200; }
+  .modal.hidden{ display:none; }
+  .modal-backdrop{
+    position:absolute; inset:0; background:rgba(7,2,15,.72); backdrop-filter:blur(4px);
+  }
+  .modal-card{
+    position:relative; width:min(520px, 92vw); background:linear-gradient(180deg, rgba(20,11,29,.96), rgba(11,7,18,.96));
+    border:1px solid var(--line); border-radius:22px; overflow:hidden; padding:32px 20px 20px; box-shadow:var(--glow);
+  }
+  .modal-close{ position:absolute; top:12px; right:12px; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text); cursor:pointer; }
+  .modal-card h3{ margin:0 0 16px; text-align:center; font-family:'Poppins',sans-serif; letter-spacing:.05em; text-transform:uppercase; color:var(--pink-soft); font-size:1.1rem; }
+  .art-frame{ border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#0d0913; }
+  .modal-copy{ margin:12px 0 0; text-align:center; color:var(--text-dim); font-size:.95rem; font-family:'Poppins',sans-serif; }
+  .toast{
+    position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(16px); opacity:0; pointer-events:none;
+    background:rgba(17,11,24,.94); border:1px solid var(--line); color:var(--text); padding:12px 18px; border-radius:999px; font-family:'Poppins',sans-serif; font-size:.82rem; box-shadow:var(--glow); transition:opacity .2s ease, transform .2s ease;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .side-signoff small{ display:block; font-family:'Poppins',sans-serif; font-size:.72rem; color:var(--text-dim); letter-spacing:.04em; margin-bottom:6px;}
+
+  main.center{ padding:34px 30px; border-right:1px solid var(--line); }
+  main.center h2{
+    font-family:'Dancing Script', cursive; font-weight:700; font-size:2.3rem; text-align:center;
+    color:var(--text); margin:0 0 6px;
+  }
+  main.center .sub{ text-align:center; color:var(--text-dim); font-family:'Poppins',sans-serif; font-size:.85rem; margin-bottom:26px; display:flex; align-items:center; justify-content:center; gap:8px;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(62px, 1fr));
+    gap:11px;
+  }
+  .num-btn{
+    position:relative;
+    aspect-ratio:1/1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+    background:radial-gradient(circle at 30% 20%, rgba(255,79,195,.10), rgba(10,4,20,.9));
+    border:1px solid var(--line);
+    border-radius:12px;
+    color:var(--text-dim);
+    font-family:'Poppins',sans-serif; font-weight:500; font-size:.95rem;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .2s ease, color .2s, border-color .2s;
+  }
+  .num-btn .h{ font-size:.8rem; line-height:1; color:var(--pink); opacity:.8;}
+  .num-btn:hover{ transform:translateY(-3px); border-color:var(--pink); color:var(--text); box-shadow:var(--glow); }
+  .num-btn:focus-visible{ outline:2px solid var(--pink-soft); outline-offset:2px; }
+  .num-btn.active{
+    background:linear-gradient(160deg, rgba(255,79,195,.35), rgba(139,92,246,.25));
+    border-color:var(--pink); color:#fff; box-shadow:var(--glow);
+  }
+  .num-btn.fav .h{ color:var(--gold); }
+  .grid.empty::after{
+    content:"No poems match your search yet.";
+    grid-column:1/-1; text-align:center; color:var(--text-dim); font-family:'Poppins',sans-serif; padding:30px 0;
+  }
+
+  /* ---------- Poem panel ---------- */
+  aside.reader{ padding:30px 26px; display:flex; flex-direction:column; gap:16px; }
+  .poem-card{
+    border:1px solid var(--line); border-radius:16px;
+    padding:26px 24px 20px;
+    background:linear-gradient(180deg, rgba(255,79,195,.05), rgba(18,10,36,.6));
+    box-shadow:0 0 30px rgba(139,92,246,.12), inset 0 0 40px rgba(255,79,195,.03);
+    min-height:520px;
+    display:flex; flex-direction:column;
+  }
+  .poem-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; font-family:'Poppins',sans-serif;}
+  .poem-num{ display:flex; align-items:center; gap:8px; color:var(--pink-soft); font-size:.85rem; letter-spacing:.03em;}
+  .fav-btn{
+    background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px;
+    color:var(--text-dim); font-size:.8rem; cursor:pointer; display:flex; align-items:center; gap:6px;
+    transition:color .2s, border-color .2s;
+  }
+  .fav-btn:hover{ color:var(--pink-soft); border-color:var(--pink); }
+  .fav-btn.is-fav{ color:var(--gold); border-color:var(--gold); }
+  .poem-title{
+    font-family:'Dancing Script', cursive; font-weight:700; font-size:1.9rem;
+    color:var(--text); margin:0 0 14px; text-align:center;
+    text-shadow:0 0 12px rgba(255,79,195,.3);
+  }
+  .poem-body{ flex:1; overflow-y:auto; padding-right:6px; max-height:52vh;}
+  .poem-body p{
+    font-size:1.12rem; line-height:1.85; color:var(--text); margin:0 0 16px;
+    max-width:62ch;
+  }
+  .poem-body::-webkit-scrollbar{ width:6px; }
+  .poem-body::-webkit-scrollbar-thumb{ background:var(--magenta); border-radius:6px; }
+  .poem-sign{
+    font-family:'Dancing Script', cursive; font-size:1.3rem; color:var(--pink-soft); text-align:right;
+    margin-top:6px;
+  }
+  .poem-nav{ display:flex; align-items:center; justify-content:space-between; padding-top:6px; font-family:'Poppins',sans-serif; font-size:.85rem; color:var(--text-dim);}
+  .nav-btn{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+    background:rgba(255,255,255,.03); color:var(--pink-soft); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background .2s, transform .15s;
+  }
+  .nav-btn:hover{ background:rgba(255,79,195,.15); transform:scale(1.06); }
+  .nav-btn:disabled{ opacity:.3; cursor:not-allowed; transform:none; }
+
+  .footer-card{
+    border:1px solid var(--line); border-radius:16px; padding:20px; text-align:center;
+    background:rgba(255,79,195,.04);
+  }
+  .footer-card .fc-icons{ display:flex; justify-content:space-between; color:var(--pink-soft); opacity:.8; margin-bottom:4px;}
+  .footer-card .fc-title{ font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--text);}
+  .footer-card .fc-sub{ font-family:'Poppins',sans-serif; font-size:.72rem; color:var(--text-dim); letter-spacing:.03em; margin-top:4px;}
+
+  @media (max-width:1100px){
+    .layout{ grid-template-columns:1fr; }
+    aside.side, main.center{ border-right:none; border-bottom:1px solid var(--line); }
+    aside.side{ flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; }
+    aside.side nav{ flex-direction:row; flex-wrap:wrap; justify-content:center;}
+    .side-signoff{ margin-top:0; }
+    .side-note, .side-divider{ display:none; }
+  }
+
+  footer.bottom{
+    text-align:center; padding:46px 20px 60px; border-top:1px solid var(--line);
+  }
+  footer.bottom .ft1{ font-family:'Dancing Script', cursive; font-size:1.8rem; color:var(--pink-soft); text-shadow:0 0 14px rgba(255,79,195,.4);}
+  footer.bottom .rule{ width:100px; height:1px; margin:14px auto 0; background:linear-gradient(90deg, transparent, var(--pink), transparent); position:relative;}
+  footer.bottom .rule::after{ content:"♡"; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); color:var(--pink); background:var(--void); padding:0 8px; font-size:.85rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="nebula"></div>
+<span class="heart-drift" style="top:14%; left:6%; animation-delay:0s;">♡</span>
+<span class="heart-drift" style="top:60%; left:3%; animation-delay:3s; font-size:16px;">♡</span>
+<span class="heart-drift" style="top:30%; right:5%; animation-delay:1.5s;">♡</span>
+<span class="heart-drift" style="top:75%; right:8%; animation-delay:4.5s; font-size:16px;">♡</span>
+
+<header class="top">
+  <div class="brand"><span class="pulse">♡</span> I Love You Briana</div>
+  <nav class="mainnav">
+    <a href="#hero"><span>🏠</span>Home</a>
+    <a href="#poems" class="active"><span>📖</span>Poems</a>
+    <a href="#about-panel" id="about-link"><span>♡</span>About</a>
+    <a href="#" id="nav-favorites"><span>♡</span>Favorites</a>
+  </nav>
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c6a9d8" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchInput" type="text" placeholder="Search a poem...">
+  </div>
+</header>
+
+<div id="about-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="about-title">
+  <div class="modal-backdrop" data-close="true"></div>
+  <div class="modal-card">
+    <button class="modal-close" id="closeAbout" aria-label="Close about section">✕</button>
+    <h3 id="about-title">Tomura Shigaraki Fan Art</h3>
+    <div class="art-frame" aria-label="Tomura Shigaraki-inspired fan art illustration">
+      <svg viewBox="0 0 800 1000" role="img" aria-label="Stylized Tomura Shigaraki fan art">
+        <defs>
+          <linearGradient id="bgGrad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#140b1d"/>
+            <stop offset="50%" stop-color="#23102a"/>
+            <stop offset="100%" stop-color="#090a15"/>
+          </linearGradient>
+          <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#f85a85" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#f85a85" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="800" height="1000" fill="url(#bgGrad)"/>
+        <ellipse cx="405" cy="260" rx="260" ry="180" fill="url(#glow)"/>
+        <g transform="translate(90,70)">
+          <path d="M260 180c-30-45-75-75-140-82-32-4-67 2-99 20-42 25-67 69-68 119-2 59 28 108 85 148 48 35 81 64 93 119 5 23 7 43 7 69h112c0-22 2-43 7-68 11-54 45-83 92-118 56-40 87-88 85-148-2-52-27-96-70-121-31-20-66-25-104-18z" fill="#17171c" opacity="0.9"/>
+          <path d="M280 210c34 14 65 20 93 19 29-1 56-12 83-31l-17 149-120 17-88-18-19-138c25 16 46 27 68 30z" fill="#1d1b22"/>
+          <path d="M240 220c-55 11-98 50-99 99-2 53 28 92 80 115l82 31 83-33c56-24 91-67 92-119 0-53-40-96-102-110l-36-9-35 8-65-3z" fill="#2d2a33"/>
+          <path d="M285 290c18-43 42-64 75-66 38-2 68 25 86 64-23-3-37-3-61 0-18 3-39 11-58 23-11 7-29 11-42 11z" fill="#15141a"/>
+          <circle cx="345" cy="313" r="14" fill="#f04a8a"/>
+          <circle cx="465" cy="313" r="14" fill="#f04a8a"/>
+          <path d="M260 385c11 52 26 77 33 120 5 33 8 71 8 119h106c1-49 4-89 9-122 5-38 20-73 33-118-15 6-32 10-52 10-32 0-55-11-80-16-23-5-42-5-57 7z" fill="#1a1b20"/>
+          <path d="M205 550l-78 121 58 40 72-113zM546 548l76 120-58 42-72-114z" fill="#111318"/>
+          <path d="M325 660l-44 179 111-5-10-174z" fill="#17192c"/>
+          <path d="M440 660l47 180-112-7 7-173z" fill="#17192c"/>
+          <path d="M255 392c14-6 31-5 47 3l-8 23c-11-8-20-10-39-13zM546 394c-15-7-32-6-49 2l8 22c12-7 22-10 41-13z" fill="#f2c4d8" opacity="0.7"/>
+          <path d="M208 200l-70-83 30-24 72 98zM571 203l74-82-32-25-76 96z" fill="#090b11"/>
+        </g>
+      </svg>
+    </div>
+    <p class="modal-copy">A dark, stylized fan-art tribute inspired by Tomura Shigaraki's iconic look.</p>
+  </div>
+</div>
+
+<section class="hero" id="hero">
+  <p class="side-quote left">"You are not just my favorite person... you are my whole universe."</p>
+  <p class="side-quote right">In every star, I see you. In every line I write, I love you.</p>
+  <p class="quote">for Briana</p>
+  <h1>ONE HUNDRED POEMS</h1>
+  <div class="brand-title">I Love You, Briana</div>
+  <div class="rule"></div>
+  <p class="tagline">One hundred poems... one hundred ways of saying how much I love you, Briana.</p>
+</section>
+
+<div class="layout">
+  <aside class="side">
+    <nav>
+      <a href="#hero"><span>🏠</span>Home</a>
+      <a href="#poems" class="active" id="side-poems"><span>📖</span>Poems</a>
+      <a href="#" id="side-favorites"><span>♡</span>Favorites</a>
+      <a href="#about-panel" id="side-about"><span>★</span>About</a>
+    </nav>
+    <div class="side-divider"></div>
+    <button class="side-note about-launch" id="about-panel">"You're the reason my heart beats in another universe."</button>
+    <div class="side-signoff">
+      <small>forever yours</small>
+      Briana ♡
+    </div>
+  </aside>
+
+  <main class="center" id="poems">
+    <h2>The 100 Poems</h2>
+    <p class="sub">♡ Click a number to read a poem ♡</p>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <aside class="reader">
+    <div class="poem-card">
+      <div class="poem-head">
+        <span class="poem-num">♡ Poem #<span id="poemIndexLabel">1</span></span>
+        <button class="fav-btn" id="favBtn">♡ Save</button>
+      </div>
+      <h3 class="poem-title" id="poemTitle"></h3>
+      <div class="poem-body" id="poemBody"></div>
+      <div class="poem-sign">I love you, Briana ♡</div>
+      <div class="poem-nav">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous poem">←</button>
+        <span id="pageLabel">1 / 100</span>
+        <button class="nav-btn" id="nextBtn" aria-label="Next poem">→</button>
+      </div>
+    </div>
+    <div class="footer-card">
+      <div class="fc-icons"><span>🦋</span><span>♡</span><span>🦋</span></div>
+      <div class="fc-title">100 Poems<br>100 Reasons<br>To Love You</div>
+      <div class="fc-sub">MADE FOR BRIANA</div>
+    </div>
+  </aside>
+</div>
+
+<footer class="bottom">
+  <div class="ft1">Briana... you are my favorite poem.</div>
+  <div class="rule"></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- Poem collection ---------------- */
+  var POEMS = [
+    { title: "A Home in Your Name", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Moon Learned Your Love", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Home Built by You", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Touch of Your Name", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Laugh Saves Me", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Ink in Your Eyes", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Walking Beside You", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Heart Speaks Your Name", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Peace Follows Me", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Minutes Belong to Us", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "When You Say My Name", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Rain Wanted You", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Hands, My Calm", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Memory Makes Me Smile", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Night Missed You", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Affection Teaches Me", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Our Story Is Felt", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Spring Found You", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Voice, My Melody", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Become More Real With You", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Patience Makes Me Human", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I See You in Every Morning", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Way You Look at Me", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "What Remains After You", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Simplest Way to Love You", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Secrets Are Mine", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Certainty of Your Love", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Best Part of My Day", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Absence Hurts Beautifully", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Name in My Future", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "You Are My Pause", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Carry You in My Dreams", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Love Is My Compass", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Smile Knows Me", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "What I Keep", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Love Saves Me", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Way I Love You", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Living With You", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Tenderness Has a Name", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Stay in Your Eyes", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Peace Does Me Good", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Love You Even If Everything Changes", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Love in My Hands", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Light That Follows You", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Place Where I Stay", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Life in Your Colors", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "When You Look at Me", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Name in My Chest", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Calm You Give Me", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Day I Met You", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "What You Bring Me", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Memory Follows Me", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "In Your Arms I Feel Safe", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Love Is My Certainty", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Best Truth", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Name in Every Corner", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Choose You Again Today", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Quiet of Loving You", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Greatest Fortune", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Life Told Me About You", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "You Are My Favorite Song", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Love You in Every Hour", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Best Part of My Story", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Love Knows Your Name", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Way I Stay", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Moon Names You", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "You Are My Answer", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Light of My Days", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Best Thing That Happened to Me", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Favorite Word", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Will Love You Like Water", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Love Makes Me Believe", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Promise in Your Smile", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Shape of Forever", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Heart Keeps Your Rhythm", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Way You Make Life Soft", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Everything Feels Better With You", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Gentle Kind of Forever", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Name Is My Favorite Prayer", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Warmth of Your Presence", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Can Feel Your Love", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "What I Wish for Every Morning", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Best Part of My World", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Way You Steady Me", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Quiet Kind of Magic", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Sun Rises With You", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Beauty of Us", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "I Love You in Small Ways", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Safe Place in Your Arms", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "You Are the Reason I Believe", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Love Feels Like Home", paragraphs: ["Briana, every moment with you feels a little more sacred than the last. I never knew how beautiful a day could feel until it included you.", "there is a quiet kind of magic in you that changes everything around me. Your presence turns my worries into gentler thoughts and my doubts into trust.", "everything in me turns kinder and more honest when I think of you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Future Written in Your Name", paragraphs: ["Briana, ordinary life feels softer, brighter, and full of meaning. I never knew how beautiful a day could feel until it included you.", "even the simplest hours feel rich with love and beauty. Your presence turns my worries into gentler thoughts and my doubts into trust.", "love looks brighter without trying too hard when it is you. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Your Eyes Hold My Peace", paragraphs: ["Briana, the way you make my heart slow down and feel safe. I never knew how beautiful a day could feel until it included you.", "my days feel gentler and my heart feels more alive. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is peace in you that keeps finding its way into my heart. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "You Are My Favorite Thought", paragraphs: ["Briana, there is a quiet kind of magic in you that changes everything around me. I never knew how beautiful a day could feel until it included you.", "the calm you bring into my world and the warmth you leave behind. Your presence turns my worries into gentler thoughts and my doubts into trust.", "every moment with you feels a little more sacred than the last. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "The Heart That Always Finds You", paragraphs: ["Briana, even the simplest hours feel rich with love and beauty. I never knew how beautiful a day could feel until it included you.", "everything in me turns kinder and more honest when I think of you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "ordinary life feels softer, brighter, and full of meaning. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Calm, My Home, My You", paragraphs: ["Briana, my days feel gentler and my heart feels more alive. I never knew how beautiful a day could feel until it included you.", "love looks brighter without trying too hard when it is you. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the way you make my heart slow down and feel safe. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "Never Stop Loving You", paragraphs: ["Briana, the calm you bring into my world and the warmth you leave behind. I never knew how beautiful a day could feel until it included you.", "there is peace in you that keeps finding its way into my heart. Your presence turns my worries into gentler thoughts and my doubts into trust.", "there is a quiet kind of magic in you that changes everything around me. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "A Life That Feels Better With You", paragraphs: ["Briana, everything in me turns kinder and more honest when I think of you. I never knew how beautiful a day could feel until it included you.", "every moment with you feels a little more sacred than the last. Your presence turns my worries into gentler thoughts and my doubts into trust.", "even the simplest hours feel rich with love and beauty. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "You Make the Ordinary Shine", paragraphs: ["Briana, love looks brighter without trying too hard when it is you. I never knew how beautiful a day could feel until it included you.", "ordinary life feels softer, brighter, and full of meaning. Your presence turns my worries into gentler thoughts and my doubts into trust.", "my days feel gentler and my heart feels more alive. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] },
+    { title: "My Favorite Place Is You", paragraphs: ["Briana, there is peace in you that keeps finding its way into my heart. I never knew how beautiful a day could feel until it included you.", "the way you make my heart slow down and feel safe. Your presence turns my worries into gentler thoughts and my doubts into trust.", "the calm you bring into my world and the warmth you leave behind. I love you in a way that feels honest, steady, and beautifully alive, and I want every part of my life to keep holding your name."] }
+  ];
+
+
+  /* ---------------- State ---------------- */
+  var current = 0;
+  var favorites = {};
+  var viewFavoritesOnly = false;
+  var searchTerm = "";
+
+  try{
+    var stored = localStorage.getItem("briana_favorites_v1");
+    if(stored){ favorites = JSON.parse(stored); }
+  }catch(e){ favorites = {}; }
+
+  function saveFavorites(){
+    try{ localStorage.setItem("briana_favorites_v1", JSON.stringify(favorites)); }catch(e){}
+  }
+
+  /* ---------------- Rendering ---------------- */
+  var gridEl = document.getElementById("grid");
+  var poemTitleEl = document.getElementById("poemTitle");
+  var poemBodyEl = document.getElementById("poemBody");
+  var poemIndexLabel = document.getElementById("poemIndexLabel");
+  var pageLabel = document.getElementById("pageLabel");
+  var favBtn = document.getElementById("favBtn");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
+  var searchInput = document.getElementById("searchInput");
+
+  function showToast(message){
+    var toast = document.getElementById("toast");
+    if(!toast){
+      toast = document.createElement("div");
+      toast.id = "toast";
+      toast.className = "toast";
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(function(){ toast.classList.remove("show"); }, 1800);
+  }
+
+  function openAbout(){
+    var modal = document.getElementById("about-modal");
+    if(!modal) return;
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function closeAbout(){
+    var modal = document.getElementById("about-modal");
+    if(!modal) return;
+    modal.classList.add("hidden");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  function renderGrid(){
+    gridEl.innerHTML = "";
+    var any = false;
+    for(var i=0;i<100;i++){
+      if(viewFavoritesOnly && !favorites[i]) continue;
+      var poem = POEMS[i];
+      if(searchTerm && poem.title.toLowerCase().indexOf(searchTerm) === -1 && String(i+1).indexOf(searchTerm) === -1) continue;
+      any = true;
+      var btn = document.createElement("button");
+      btn.className = "num-btn" + (i===current ? " active" : "") + (favorites[i] ? " fav" : "");
+      btn.setAttribute("data-index", i);
+      btn.setAttribute("aria-label", "Poem " + (i+1) + ": " + poem.title);
+      btn.innerHTML = '<span class="h">' + (favorites[i] ? "★" : "♡") + '</span><span>' + (i+1) + '</span>';
+      btn.addEventListener("click", (function(idx){ return function(){ selectPoem(idx); }; })(i));
+      gridEl.appendChild(btn);
+    }
+    gridEl.classList.toggle("empty", !any);
+  }
+
+  function renderPoem(){
+    var poem = POEMS[current];
+    poemIndexLabel.textContent = current + 1;
+    pageLabel.textContent = (current + 1) + " / 100";
+    poemTitleEl.textContent = poem.title;
+    poemBodyEl.innerHTML = "";
+    poem.paragraphs.forEach(function(p){
+      var el = document.createElement("p");
+      el.textContent = p;
+      poemBodyEl.appendChild(el);
+    });
+    poemBodyEl.scrollTop = 0;
+    favBtn.classList.toggle("is-fav", !!favorites[current]);
+    favBtn.innerHTML = favorites[current] ? "★ Saved" : "♡ Save";
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === 99;
+  }
+
+  function selectPoem(i){
+    current = i;
+    renderGrid();
+    renderPoem();
+  }
+
+  favBtn.addEventListener("click", function(){
+    if(favorites[current]) delete favorites[current];
+    else favorites[current] = true;
+    saveFavorites();
+    renderGrid();
+    renderPoem();
+  });
+
+  prevBtn.addEventListener("click", function(){ if(current>0) selectPoem(current-1); });
+  nextBtn.addEventListener("click", function(){ if(current<99) selectPoem(current+1); });
+
+  searchInput.addEventListener("input", function(){
+    searchTerm = searchInput.value.trim().toLowerCase();
+    renderGrid();
+  });
+
+  function toggleFavoritesView(e){
+    if(e) e.preventDefault();
+    viewFavoritesOnly = !viewFavoritesOnly;
+    document.getElementById("nav-favorites").classList.toggle("active", viewFavoritesOnly);
+    document.getElementById("side-favorites").classList.toggle("active", viewFavoritesOnly);
+    document.getElementById("side-poems").classList.toggle("active", !viewFavoritesOnly);
+    renderGrid();
+    showToast(viewFavoritesOnly ? "Favorites only" : "Showing all poems");
+  }
+
+  function handleAboutTrigger(e){
+    if(e) e.preventDefault();
+    openAbout();
+  }
+
+  document.getElementById("nav-favorites").addEventListener("click", toggleFavoritesView);
+  document.getElementById("side-favorites").addEventListener("click", toggleFavoritesView);
+  document.getElementById("about-link").addEventListener("click", handleAboutTrigger);
+  document.getElementById("side-about").addEventListener("click", handleAboutTrigger);
+  document.getElementById("about-panel").addEventListener("click", handleAboutTrigger);
+  document.getElementById("closeAbout").addEventListener("click", closeAbout);
+  document.querySelector(".modal-backdrop").addEventListener("click", closeAbout);
+  document.addEventListener("keydown", function(event){ if(event.key === "Escape") closeAbout(); });
+  document.querySelector(".brand").addEventListener("click", function(){ showToast("Briana is the favorite part of every day."); });
+  document.getElementById("side-poems").addEventListener("click", function(){ document.getElementById("poems").scrollIntoView({behavior:"smooth", block:"start"}); showToast("Poem library open"); });
+  document.querySelector(".mainnav a[href='#hero']").addEventListener("click", function(){ showToast("Home is active"); });
+
+  renderGrid();
+  renderPoem();
+})();
+</script>
+</body>
+</html>
